@@ -100,13 +100,13 @@ input {
 table {
 	width: 100%;
 }
-/*
+
 img {
-	max-width: 100%;
+	max-width: 30%;
 	height: auto;
 	border-radius: 8px;
 }
-*/
+
 code {
 	padding: 2px 5px;
 	background-color: rgb(var(--gray-light));
