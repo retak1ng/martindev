@@ -1,42 +1,62 @@
-# 🚀 Portafolio con Astro
+# Mi Portafolio
 
-¡Bienvenido a mi portafolio creado con [Astro](https://astro.build/)! Este proyecto es un ejemplo de cómo construir un sitio web moderno, rápido y optimizado para SEO utilizando Astro.
+Portafolio personal construido con Astro, desplegado en GitHub Pages.
 
-## 🌟 Características
+**URL**: [retak1ng.github.io/martindev](https://retak1ng.github.io/martindev/)
 
-- ⚡ **Rendimiento sobresaliente**: 100/100 en Lighthouse.
-- 🌐 **SEO optimizado**: URLs canónicas y datos OpenGraph.
-- 🗺️ **Soporte de Sitemap**: Generación automática.
-- 📰 **RSS Feed**: Compatible con lectores de noticias.
-- ✍️ **Markdown y MDX**: Soporte completo para contenido dinámico.
-- 🎨 **Estilo minimalista**: Personalízalo a tu gusto.
+## Stack
 
-## 📂 Estructura del Proyecto
+- **Astro 5** + MDX + Sitemap
+- **TypeScript**
+- **GitHub Pages** (base path: `/martindev/`)
 
-El proyecto está organizado de la siguiente manera:
+## Características
 
-```text
-├── public/               # Archivos estáticos (imágenes, fuentes, etc.)
-├── src/
-│   ├── components/       # Componentes reutilizables
-│   ├── content/          # Contenido en Markdown/MDX
-│   ├── layouts/          # Plantillas de diseño
-│   └── pages/            # Páginas del sitio
-├── astro.config.mjs      # Configuración de Astro
-├── README.md             # Este archivo
-├── package.json          # Dependencias del proyecto
-└── tsconfig.json         # Configuración de TypeScript
+- 100/100 Lighthouse
+- SEO optimizado: URLs canónicas y OpenGraph
+- Sitemap autogenerado
+- RSS Feed
+- Blog con Markdown/MDX
+- Arquitectura Clean Architecture
+
+## Estructura del proyecto
+
+```
+src/
+├── domain/types/       ← Entidades e interfaces (site.ts, blog.ts, about.ts)
+├── data/               ← Configuración y datos estáticos (site.config.ts, about.ts)
+├── services/           ← Acceso a datos (blog.service.ts)
+├── components/
+│   ├── ui/             ← Componentes atómicos (SocialLinks.astro)
+│   ├── BaseHead.astro
+│   ├── Header.astro
+│   ├── Footer.astro
+│   ├── HeaderLink.astro
+│   └── FormattedDate.astro
+├── layouts/
+│   ├── BaseLayout.astro   ← Layout base para todas las páginas
+│   └── BlogPost.astro     ← Solo para posts del blog
+├── pages/
+│   ├── index.astro
+│   ├── about.astro
+│   ├── contact.astro
+│   ├── rss.xml.ts
+│   └── blog/
+│       ├── index.astro
+│       └── [...slug].astro
+├── content/blog/       ← Posts en Markdown/MDX
+├── styles/global.css
+└── content.config.ts   ← Schema de content collections
 ```
 
-## 📖 Aprende más
+## Comandos
 
-- Documentación oficial de Astro: [docs.astro.build](https://docs.astro.build)
-- Únete a la comunidad en Discord: [astro.build/chat](https://astro.build/chat)
+| Comando         | Acción                                      |
+| --------------- | ------------------------------------------- |
+| `npm run dev`   | Servidor de desarrollo en `localhost:4321`  |
+| `npm run build` | Build de producción en `./dist/`            |
+| `npm run preview` | Vista previa del build local             |
 
----
+## Contacto
 
-### 📣 ¡Conéctate conmigo!
-
-- **LinkedIn**: [Tu perfil de LinkedIn](https://linkedin.com/in/retak1ng)
-
-¡Gracias por visitar mi proyecto! Si te gusta, no olvides darle una ⭐ en GitHub.
+- **LinkedIn**: [linkedin.com/in/retak1ng](https://linkedin.com/in/retak1ng)
