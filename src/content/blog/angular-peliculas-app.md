@@ -3,6 +3,9 @@ title: 'Angular Películas App'
 description: 'Aplicación Web de Peliculas con Angular y ASP.NET Core'
 pubDate: 'Mar 10 2025'
 heroImage: '/AngularPeliculas.png'
+tags: ['Angular', 'ASP.NET Core', 'TypeScript', 'SQL Server', 'JWT']
+githubUrl: 'https://github.com/retak1ng/peliculas-angular-app'
+demoUrl: 'https://peliculas-angular-app.vercel.app'
 ---
 
 # 🎥 

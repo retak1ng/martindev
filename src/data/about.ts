@@ -1,7 +1,7 @@
 import type { AboutData } from '../domain/types/about';
 
 const about: AboutData = {
-	bio: `¡Hola! mi nombre es Martín Rojas, tengo 24 años y soy de Argentina.
+	bio: `¡Hola! mi nombre es Martín Rojas, tengo 25 años y soy de Argentina.
 Soy un desarrollador de software apasionado por el desarrollo full-stack.
 
 Actualmente estoy estudiando Ingeniería en Computación, donde he adquirido

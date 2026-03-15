@@ -1,5 +1,4 @@
 ---
-import FormattedDate from '../../components/FormattedDate.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getPostsSorted } from '../../services/blog.service';
 
@@ -11,17 +10,26 @@ const posts = await getPostsSorted();
 		<ul>
 			{posts.map((post) => (
 				<li>
-					<a href={`./${post.id}/`}>
-						<img
-							width={720}
-							height={360}
-							src={`${import.meta.env.BASE_URL}${post.data.heroImage}`}
-							alt=""
-						/>
-						<h4 class="title">{post.data.title}</h4>
-						<p class="date">
-							<FormattedDate date={post.data.pubDate} />
-						</p>
+					<a href={`${import.meta.env.BASE_URL}blog/${post.id}/`}>
+						{post.data.heroImage && (
+							<img
+								width={720}
+								height={360}
+								src={`${import.meta.env.BASE_URL}${post.data.heroImage}`}
+								alt={post.data.title}
+							/>
+						)}
+						<div class="card-body">
+							<h4 class="title">{post.data.title}</h4>
+							<p class="description">{post.data.description}</p>
+							{post.data.tags && post.data.tags.length > 0 && (
+								<div class="tags">
+									{post.data.tags.map((tag) => (
+										<span class="tag">{tag}</span>
+									))}
+								</div>
+							)}
+						</div>
 					</a>
 				</li>
 			))}
@@ -30,9 +38,6 @@ const posts = await getPostsSorted();
 </BaseLayout>
 
 <style>
-	main {
-		width: 960px;
-	}
 	ul {
 		display: flex;
 		flex-wrap: wrap;
@@ -44,57 +49,91 @@ const posts = await getPostsSorted();
 	ul li {
 		width: calc(50% - 1rem);
 	}
-	ul li * {
-		text-decoration: none;
-		transition: 0.2s ease;
-	}
 	ul li:first-child {
 		width: 100%;
-		margin-bottom: 1rem;
-		text-align: center;
 	}
 	ul li:first-child img {
 		width: 100%;
+		max-height: 360px;
+		object-fit: cover;
 	}
 	ul li:first-child .title {
-		font-size: 2.369rem;
+		font-size: 1.75rem;
 	}
 	ul li img {
-		margin-bottom: 0.5rem;
-		border-radius: 12px;
+		width: 100%;
+		height: 200px;
+		object-fit: cover;
+		border-radius: 12px 12px 0 0;
+		margin-bottom: 0;
+		display: block;
+		transition: opacity 0.2s ease;
 	}
 	ul li a {
 		display: block;
+		text-decoration: none;
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 12px;
+		overflow: hidden;
+		transition: box-shadow 0.2s ease, transform 0.2s ease;
+	}
+	ul li a:hover {
+		box-shadow: var(--box-shadow);
+		transform: translateY(-3px);
+	}
+	ul li a:hover img {
+		opacity: 0.9;
+	}
+	.card-body {
+		padding: 1rem;
 	}
 	.title {
-		margin: 0;
+		margin: 0 0 0.4rem 0;
 		color: rgb(var(--black));
-		line-height: 1;
+		line-height: 1.2;
+		font-size: 1.1rem;
+		transition: color 0.2s ease;
 	}
-	.date {
-		margin: 0;
+	ul li:first-child .card-body {
+		padding: 1.25rem;
+	}
+	ul li a:hover .title {
+		color: var(--accent);
+	}
+	.description {
+		margin: 0 0 0.75rem 0;
 		color: rgb(var(--gray));
+		font-size: 0.875rem;
+		line-height: 1.5;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
 	}
-	ul li a:hover h4,
-	ul li a:hover .date {
-		color: rgb(var(--accent));
+	.tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.4rem;
 	}
-	ul a:hover img {
-		box-shadow: var(--box-shadow);
+	.tag {
+		font-size: 0.75rem;
+		padding: 0.2rem 0.6rem;
+		background-color: rgba(35, 55, 255, 0.08);
+		color: var(--accent);
+		border-radius: 999px;
+		font-weight: 600;
+		letter-spacing: 0.01em;
 	}
 	@media (max-width: 720px) {
 		ul {
-			gap: 0.5em;
+			gap: 1rem;
 		}
-		ul li {
-			width: 100%;
-			text-align: center;
-		}
+		ul li,
 		ul li:first-child {
-			margin-bottom: 0;
+			width: 100%;
 		}
 		ul li:first-child .title {
-			font-size: 1.563em;
+			font-size: 1.3rem;
 		}
 	}
 </style>
